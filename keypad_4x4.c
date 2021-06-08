@@ -63,7 +63,7 @@ char keypad_get_key(void)
     
         gpio_put(rows[row], 1);
 
-        sleep_ms(10);
+        busy_wait_us(10000);
 
         cols = gpio_get_all();
         gpio_put(rows[row], 0);
@@ -83,3 +83,11 @@ char keypad_get_key(void)
     if (cols == 0x200000) return (char) matriz[row * 4 + 3];
     return 0;
 }
+
+void keypad_irq_enable(bool enable, gpio_irq_callback_t callback) {
+    for(int i = 0; i < 4; i++) {
+        gpio_set_irq_enabled_with_callback(columns[i], 0x8, enable, callback);
+    }
+}
+
+
