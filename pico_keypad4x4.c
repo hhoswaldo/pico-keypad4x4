@@ -29,11 +29,16 @@ uint column_mask[4];
  * @param matrix_values values assigned to each key
  */
 void pico_keypad_init(uint columns[4], uint rows[4], char matrix_values[16]) {
-    _columns = columns;
-    _rows = rows;
-    _matrix_values = matrix_values;
+
+    for (int i = 0; i < 16; i++) {
+        _matrix_values[i] = matrix_values[i];
+    }
 
     for (int i = 0; i < 4; i++) {
+
+        _columns[i] = columns[i];
+        _rows[i] = rows[i];
+
         gpio_init(_columns[i]);
         gpio_init(_rows[i]);
 
