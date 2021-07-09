@@ -118,6 +118,6 @@ char pico_keypad_get_key(void) {
  */
 void pico_keypad_irq_enable(bool enable, gpio_irq_callback_t callback) {
     for (int i = 0; i < 4; i++) {
-        gpio_set_irq_enabled_with_callback(columns[i], 0x8, enable, callback);
+        gpio_set_irq_enabled_with_callback(_columns[i], 0x8, enable, callback);
     }
 }
