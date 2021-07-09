@@ -83,10 +83,10 @@ char pico_keypad_get_key(void) {
         gpio_put(_rows[i], 1);
     }
 
-    if (cols == 0x040000) return (char)matriz[row * 4 + 0];
-    if (cols == 0x080000) return (char)matriz[row * 4 + 1];
-    if (cols == 0x100000) return (char)matriz[row * 4 + 2];
-    if (cols == 0x200000) return (char)matriz[row * 4 + 3];
+    if (cols == 0x040000) return (char)_matrix_values[row * 4 + 0];
+    if (cols == 0x080000) return (char)_matrix_values[row * 4 + 1];
+    if (cols == 0x100000) return (char)_matrix_values[row * 4 + 2];
+    if (cols == 0x200000) return (char)_matrix_values[row * 4 + 3];
     return 0;
 }
 
