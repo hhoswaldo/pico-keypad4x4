@@ -48,7 +48,7 @@ void pico_keypad_init(uint columns[4], uint rows[4], char matrix_values[16]) {
         gpio_put(_rows[i], 1);
 
         all_columns_mask = all_columns_mask + (1 << _columns[i]);
-        column_mask[i] = 1 << column_mask[i];
+        column_mask[i] = 1 << _columns[i];
     }
 }
 
@@ -65,6 +65,7 @@ char pico_keypad_get_key(void) {
 
     cols = gpio_get_all();
     cols = cols & all_columns_mask;
+    
     if (cols == 0x0) {
         return 0;
     }
@@ -84,7 +85,7 @@ char pico_keypad_get_key(void) {
         cols = cols & all_columns_mask;
         if (cols != 0x0) {
             break;
-        }
+        }   
     }
 
     for (int i = 0; i < 4; i++) {
