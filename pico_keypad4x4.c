@@ -108,7 +108,19 @@ char pico_keypad_get_key(void) {
         return 0;
     }
 }
+char pico_keypad_get_key_scanner()
+{
+        int time=1;
+        int endCheckingTime=100000000;    
+        char key;
+        //printf("Enter key\n");
+        do {     
 
+        key = pico_keypad_get_key(); time++; 
+        }while(time < endCheckingTime && key == NULL);
+        busy_wait_us(500000);
+        return key;
+}
 /**
  * @brief Setup keypad to work with IRQ.
  *
